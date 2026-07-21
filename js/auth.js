@@ -63,7 +63,7 @@ async function login() {
 
         document.getElementById("login-container").style.display = "none";
 
-        document.getElementById("calendar-container").style.display = "block";
+        document.getElementById("calendar-page").style.display = "block";
 
         showCalendar();
     }
@@ -74,3 +74,16 @@ async function login() {
     
 }
 
+function logout() {
+
+        window.currentUser =null;
+
+        document.getElementById("calendar-page").style.display = "none";
+        document.getElementById("login-container").style.display = "block";
+
+        document.getElementById("username").value = "";
+        document.getElementById("password").value = "";
+        document.getElementById("login-message").textContent = "";
+    }
+
+     document.getElementById("logoutButton").addEventListener("click", logout);

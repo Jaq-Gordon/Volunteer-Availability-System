@@ -21,10 +21,22 @@
     <div id="login-container"></div>
 
     <!--Calendar-->
-    <div id="calendar-container" style="display: none;"></div>
+    <div id="calendar-page" style="display: none;">
+
+    <!--Logout Button-->
+    <div class="d-flex justify-content-end my-3">
+    <button id="logoutButton" class="btn btn-outline-danger">
+      Logout
+    </button>
+    </div>
+
+  <!-- Calendar Container -->
+    <div id="calendar-container" class="mb-4"></div>
 
     <!--form for recording availability-->
     <div id="availability-container"></div>
+
+   </div>
 
     <!--adding database library-->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
