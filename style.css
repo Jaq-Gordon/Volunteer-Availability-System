@@ -1,0 +1,45 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: azure; /*page background*/
+    margin: 0; /* This removes default spacing*/
+    padding: 40px;  /*Padding prevents content from being stuck in the corner*/
+}
+
+/*This code centers the title and text*/
+h1 {
+    text-align: center;
+    color: #333;
+}
+    
+/*Calendar container*/
+#calendar {
+    display: fex;
+    justify-content: center;
+}
+
+/*Table Structure*/
+table {
+    border-collapse: collapse;
+    background-color: white;
+}
+
+/*Cells*/
+td, th {
+    border: 1px solid #ccc;
+    padding: 10px 15px;
+    text-align: center;
+    min-width: 80px;
+}
+
+/*Header Row*/
+th {
+    background-color: #e9ecef;
+    font-weight: bold;
+}
+
+/*first column(names)*/
+td:first-child {
+    font-weight: bold;
+    background-color: #f8f9fa;
+}

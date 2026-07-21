@@ -1,0 +1,39 @@
+<!DOCTYPE html> <!--Tells the browser this is modern html-->
+<html lang="en"><!--The entire page lives inside html-->
+<head>          <!--This structure, things the user doesn't see directly-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lah Tech Availability</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="style.css">
+    
+    <!--This javascript library will allow us to use a calendar that is already built, we can focus on other aspects of development-->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+
+</head>
+<body> <!--The body is everything visible to the user on the page-->
+
+    <!--Main page title-->
+    <h1>Tech Support Calendar</h1>
+
+    <!--Login Screen-->
+    <div id="login-container"></div>
+
+    <!--Calendar-->
+    <div id="calendar-container" style="display: none;"></div>
+
+    <!--form for recording availability-->
+    <div id="availability-container"></div>
+
+    <!--adding database library-->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!--database connection-->
+    <script src="js/supabase.js"></script>
+    
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
