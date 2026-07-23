@@ -8,27 +8,114 @@ function showLogin () {
     const loginContainer = document.getElementById("login-container");
 
     loginContainer.innerHTML =
-        `<div class="login-card"> 
-            <h2>Login</h2>
-        
-            <input
-                id="username"
-                type="text"
-                placeholder="Username"
-            >
-        
-            <input
-                id="password"
-                type="password"
-                placeholder="Password"
-        
-            >
-        
-            <button id="loginButton">Log In</button>
+    `<section class="login-page">
 
-            <p id="login-message"></p>
-        
-            </div>`;
+    <div class="container py-5">
+        <div class="row g-0 justify-content-center align-items-center">
+
+            <!-- Login Card -->
+            <div class="col-lg-10">
+
+                <div class="card shadow rounded-4 overflow-hidden">
+
+                    <div class="row g-0">
+
+                        <!-- Left Side -->
+                        <div class="col-lg-6">
+
+                            <div class="card-body p-md-5">
+
+                                <div class="text-center mb-4">
+
+                                    <i class="bi bi-calendar-check login-icon"></i>
+
+                                    <h2 class="mt-3">
+                                        Volunteer Availability
+                                    </h2>
+
+                                </div>
+
+
+                                <form>
+
+                                    <div class="mb-4">
+
+                                        <label class="form-label">
+                                            Username
+                                        </label>
+
+                                        <input 
+                                            id="username"
+                                            type="text"
+                                            class="form-control"
+                                        >
+
+                                    </div>
+
+
+                                    <div class="mb-4">
+
+                                        <label class="form-label">
+                                            Password
+                                        </label>
+
+                                        <input 
+                                            id="password"
+                                            type="password"
+                                            class="form-control"
+                                        >
+
+                                    </div>
+
+
+                                    <div class="text-center">
+
+                                        <button 
+                                            id="loginButton"
+                                            type="button"
+                                            class="btn login-button px-5">
+
+                                            Log In
+
+                                        </button>
+
+                                    </div>
+
+
+                                    <p id="login-message" class="text-center mt-3"></p>
+
+
+                                </form>
+
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Image Side -->
+                        <div class="col-lg-6">
+
+                            <img 
+                                src="images/workers.jpg"
+                                class="w-100 h-100 object-fit-cover"
+                                alt="Workers">
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>`;
+
 
         document
             .getElementById("loginButton")
@@ -55,6 +142,8 @@ async function login() {
     if (user) {
 
         window.currentUser = user;
+
+        document.getElementById("user-info").textContent =`Welcome ${user.name} `;
         
         console.log("Login successful");
         console.log("Welcome:", user.name);
@@ -62,10 +151,14 @@ async function login() {
         console.log("Current User:", window.currentUser);
 
         document.getElementById("login-container").style.display = "none";
-
+        document.getElementById("main-navbar").style.display = "flex"; 
         document.getElementById("calendar-page").style.display = "block";
+        
+
+        initializeAdmin();
 
         showCalendar();
+
     }
         else {
             document.getElementById("login-message").textContent = "Invalid username or password";
@@ -78,12 +171,24 @@ function logout() {
 
         window.currentUser =null;
 
+
+        document.getElementById("main-navbar").style.display = "none";
         document.getElementById("calendar-page").style.display = "none";
+        document.getElementById("admin-page").style.display = "none";
         document.getElementById("login-container").style.display = "block";
+
+        document.getElementById("usersButton").style.display = "none";
 
         document.getElementById("username").value = "";
         document.getElementById("password").value = "";
         document.getElementById("login-message").textContent = "";
+        
+        document.getElementById("user-info").textContent = "";
     }
 
      document.getElementById("logoutButton").addEventListener("click", logout);
+
+     
+   
+   
+   

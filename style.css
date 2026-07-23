@@ -1,45 +1,35 @@
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: azure; /*page background*/
-    margin: 0; /* This removes default spacing*/
-    padding: 40px;  /*Padding prevents content from being stuck in the corner*/
+    background-color: #E2E8DD;
 }
 
-/*This code centers the title and text*/
-h1 {
-    text-align: center;
-    color: #333;
-}
-    
-/*Calendar container*/
-#calendar {
-    display: fex;
-    justify-content: center;
+
+/* Login Page */
+.login-page {
+    min-height: 100vh;
+    background-color: #909580;
 }
 
-/*Table Structure*/
-table {
-    border-collapse: collapse;
-    background-color: white;
+
+.login-icon {
+    font-size: clamp(3rem, 5vw, 5rem);
+    color: #4A6FA5;
 }
 
-/*Cells*/
-td, th {
-    border: 1px solid #ccc;
-    padding: 10px 15px;
-    text-align: center;
-    min-width: 80px;
+.login-button {
+    background-color: #4A6FA5;
+    color: white;
 }
 
-/*Header Row*/
-th {
-    background-color: #e9ecef;
-    font-weight: bold;
+
+.login-button:hover {
+    background-color: #90a1c0;
+    color: white;
 }
 
-/*first column(names)*/
-td:first-child {
-    font-weight: bold;
-    background-color: #f8f9fa;
+
+.form-control:focus {
+    border-color: #4A6FA5;
+    box-shadow: 0 0 0 .2rem rgba(74,111,165,.25);
 }
+
