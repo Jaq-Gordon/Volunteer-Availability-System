@@ -154,9 +154,11 @@ async function login() {
         document.getElementById("main-navbar").style.display = "flex"; 
         document.getElementById("calendar-page").style.display = "block";
         
+        if (user.role.toLowerCase() === "admin") {
 
-        initializeAdmin();
-
+            initializeAdmin();
+        }
+        
         showCalendar();
 
     }
