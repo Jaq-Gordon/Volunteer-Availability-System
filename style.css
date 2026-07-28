@@ -1,8 +1,4 @@
 
-body {
-    background-color: #E2E8DD;
-}
-
 
 /* Login Page */
 .login-page {
@@ -33,3 +29,281 @@ body {
     box-shadow: 0 0 0 .2rem rgba(74,111,165,.25);
 }
 
+/*Calendar Page*/
+
+#calendar-page {
+    background-color: #F5F1E8;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+#calendar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: rgba(255,255,255,.85);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+#main-navbar {
+
+    justify-content: center;
+
+    position: relative;
+
+    padding: 1.5rem 2rem;
+
+}
+
+
+#main-navbar h1 {
+
+    color: #364156;
+
+    font-size: clamp(2rem, 4vw, 3rem);
+
+    font-weight: 600;
+
+}
+
+
+#main-navbar .d-flex {
+
+    position: absolute;
+
+    right: 2rem;
+
+}
+
+#users-table-container {
+    margin-top: 1.5rem;
+}
+
+#user-info {
+
+    max-width: 1100px;
+
+    margin: 0 auto 1rem auto;
+
+    color: #60534E;
+
+    font-size: 1.2rem;
+
+    font-weight: 500;
+
+}
+
+/*Full Calendar Styling*/
+
+.fc {
+    color: #364156;
+}
+
+/*Month Title*/
+.fc .fc-toolbar-title {
+    color: #364156;
+    font-size: 2rem;
+    font-weight: 600;
+
+}
+
+.fc .fc-button-primary {
+    background-color: #364156;
+    border-color: #364156;
+    border-radius: 8px
+
+}
+
+.fc fc-button-primary:hover {
+    background-color: #4A6FA5;
+    border-color: #4A6FA5;
+    
+}
+i
+/*Calendar Gridlines*/
+.fc-theme-standard td,
+.fc-theme-standard th {
+
+    border-color: #60534E;
+}
+
+/*Weeekdays*/
+.fc-col-header-cell-cushion {
+    color: #364156;
+    text-decoration: none;
+    font-weight: none;
+    padding: .75rem 0;
+}
+
+/*Date Numbers*/
+.fc-daygrid-day-number {
+    color: #364156;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/*Calendar Legend*/
+
+#calendar-legend {
+
+    max-width: 1200px;
+
+    margin: 1.5rem auto;
+
+    text-align: center;
+
+}
+
+.legend-title {
+
+    display: block;
+
+    color: #60534E;
+
+    font-weight: 600;
+
+    margin-bottom: .75rem;
+
+    text-transform: uppercase;
+
+    letter-spacing: .05rem;
+
+}
+
+.legend-items {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 2rem;
+
+}
+
+.legend-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: .5rem;
+
+    color: #364156;
+
+}
+
+.legend-dot {
+
+    width: 14px;
+
+    height: 14px;
+
+    border-radius: 50%;
+
+    display: inline-block;
+
+}
+
+.available {
+
+    background-color: #909580;
+
+}
+
+.unavailable {
+
+    background-color: #7A3E48;
+
+}
+
+/*Admin Dashboard*/
+
+.admin-dashboard {
+
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 2rem;
+
+}
+
+.admin-dashboard h2 {
+
+    text-align: center;
+
+    margin-bottom: 2rem;
+
+}
+
+.admin-card {
+
+    background: white;
+
+    border-radius: 12px;
+
+    padding: 2rem;
+
+    box-shadow: 0 4px 12px rgba(0,0,0,.08);
+
+}
+
+.admin-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 2rem;
+
+}
+
+.admin-actions {
+
+    display: flex;
+
+    gap: 1rem;
+
+}
+
+
+#users-table-container {
+
+    margin-top: .5rem;
+
+}
+
+#users-table-container {
+    margin-top: 1rem;
+    overflow-x: auto;
+}
+
+#users-table-container table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#users-table-container th {
+    background-color: #F5F1E8;
+    color: #364156;
+    font-weight: 600;
+    padding: 12px;
+    text-align: left;
+}
+
+#users-table-container td {
+    padding: 12px;
+    border-top: 1px solid #e5e5e5;
+    color: #364156;
+}
+
+#users-table-container tr:hover {
+    background-color: #f8f8f5;
+}

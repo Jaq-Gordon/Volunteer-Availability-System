@@ -54,6 +54,8 @@ async function showCalendar() {
         initialView: "dayGridMonth",
         events: events,
 
+    
+
         //pass an object to the function containing information about the date clicked
         dateClick: function(info) {
 
@@ -91,7 +93,7 @@ async function refreshCalendar() {
 
     const events = data.map(function(entry) {
         return {
-            title: `${entry.users.name} - ${entry.status}`,
+            title: `${entry.users.name} - ${entry.status}`, //future redesign for calendar view
             start: entry.date
         };
     });
@@ -102,52 +104,65 @@ async function refreshCalendar() {
 
 //function to add availability details
 
-function showAvailabilityForm(date) {
+async function showAvailabilityForm(date) {
 
     selectedDate = date;
 
-    console.log("Opening availability form:", date);
+    console.log("Opening availability modal:", date);
 
-    const container = document.getElementById("availability-container");
+    document.getElementById("modal-date").textContent = `Date: ${date}`;
 
-  
-    container.innerHTML =
+    // Clear old values first
+    document.getElementById("modal-status").value = "Available";
+    document.getElementById("modal-notes").value = "";
 
-        `<div class="availability-card">
 
-            <h2>Availability</h2>
+    // Check if user already has availability for this date
 
-            <p>Date: ${date}</p>
+    const { data: existingEntry, error } = await supabaseClient
+        .from("availability")
+        .select("*")
+        .eq("user_id", window.currentUser.id)
+        .eq("date",selectedDate)
+        .maybeSingle();
 
-            <label for="status">Status</label>
 
-            <select id="status">
-                <option>Available</option>
-                <option>Not Available</option>
-            </select>
+    if (error) {
+        console.log(error);
+        return;
+    }
 
-            <label for="notes">Notes</label>
 
-            <textarea
-                id="notes"
-                placeholder="Optional notes"
-            ></textarea>
+    // If existing entry exists, load it
 
-            <button id="saveAvailability">
-                Save
-            </button>
-        </div>`;
+    if (existingEntry) {
 
-    document.getElementById("saveAvailability").addEventListener("click", saveAvailability);
+        document.getElementById("modal-status").value = existingEntry.status;
+
+        document.getElementById("modal-notes").value = existingEntry.notes || "";
+
+    }
+
+
+    // Open Bootstrap modal
+
+    const modal = new bootstrap.Modal(
+        document.getElementById("availabilityModal")
+    );
+
+    modal.show();
+
 }
+
+
 
 //Save function to record entry 
 async function saveAvailability() {
     
     console.log("Save button clicked");
 
-    const status = document.getElementById("status").value;
-    const notes = document.getElementById("notes").value;
+    const status = document.getElementById("modal-status").value;
+    const notes = document.getElementById("modal-notes").value;
 
     const { data: existingEntry, error: fetchError } = await supabaseClient
         .from("availability")

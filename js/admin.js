@@ -16,7 +16,6 @@ function initializeAdmin() {
 function openAdminPage() {
 
     document.getElementById("calendar-page").style.display = "none";
-
     document.getElementById("admin-page").style.display = "block";
 
     showUserManagement();
@@ -27,26 +26,48 @@ function openAdminPage() {
 
 async function showUserManagement() {
 
+
     const container = document.getElementById("user-management-container");
 
     container.innerHTML = `
-    <div class="d-flex justify-content-between align-items-center mt-4">
+    <div class="admin-dashboard">
 
-        <h3 class="mt-4">Users</h3>
+    <h2>
+        Admin Dashboard
+    </h2>
 
-        <div>
+    <div class="admin-card">
 
-        <button id="sendReminderButton" class="btn btn-outline-primary mt-3">
-        Send Email
-        </button>
+        <div class="admin-header">
 
-        <button id="addUserButton" class="btn btn-primary">
-        Add User
-        </button>
+        <h3> User Management </h3>
 
-        <div>
-    </div>
+
+            <div class="admin-actions">
+
+                <button
+                    id="addUserButton"
+                    class="btn btn-primary">
+                    Add User
+                </button>
+
+                <button
+                    id="sendReminderButton"
+                    class="btn btn-outline-primary">
+                    Send Email
+                </button>
+
+            </div>
+
+        </div>
+
+
         <div id="users-table-container"></div>
+
+
+    </div>
+
+</div>
 
     <div class="modal" id="reminderModal">
     <div class="modal-dialog">
@@ -96,6 +117,8 @@ Send
 });
 
     document.getElementById("confirmSendReminder").addEventListener("click", sendReminderEmail);
+
+    console.log("User management rendered");
 
     loadUsers();
 
