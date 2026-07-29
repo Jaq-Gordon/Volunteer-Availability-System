@@ -291,6 +291,15 @@ async function loadUsers() {
 
 function showAddUserModal() {
 
+     const existingModal = document.getElementById("addUserModal");
+
+    if (existingModal) {
+        existingModal.remove();
+    }
+
+    const generatedPassword = generatePassword();
+    console.log("Generated password:", generatedPassword);
+
     const modalHTML = `
     <div class="modal fade" id="addUserModal" tabindex="-1">
 
@@ -315,7 +324,13 @@ function showAddUserModal() {
 
     <input id="new-email"class="form-control mb-3"placeholder="Email">
 
-    <input id="new-password"type="password"class="form-control mb-3" placeholder="Password">
+    <input 
+    id="new-password" 
+    type="text" 
+    class="form-control mb-3" 
+    value="${generatedPassword}"
+    readonly
+    >
 
     </div>
 
@@ -380,9 +395,13 @@ async function addUser() {
     const modal = bootstrap.Modal.getInstance(modalElement);
 
     if (modal) {
-        modal.hide
+        modal.hide()
+
+        setTimeout(() => {
+        modalElement.remove();
+        }, 300);
     }
-    
+
     loadUsers();
 
 }
@@ -431,5 +450,7 @@ const { error } = await supabaseClient
     loadUsers();
 
 }
+
+
 
 
