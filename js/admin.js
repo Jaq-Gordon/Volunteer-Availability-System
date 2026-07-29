@@ -3,9 +3,13 @@ function initializeAdmin() {
 
     if (window.currentUser?.role === "admin") {
 
+        document.getElementById("calendarButton").style.display = "block";
+
         document.getElementById("usersButton").style.display = "block";
 
         document.getElementById("usersButton").addEventListener("click", openAdminPage);
+
+        document.getElementById("calendarButton").addEventListener("click", openCalendarPage);
 
     }
 
@@ -57,12 +61,20 @@ async function showUserManagement() {
                     Send Email
                 </button>
 
+                 <button 
+                    id="viewAvailabilityButton"
+                    class="btn btn-outline-primary">
+                    View Availability
+                </button>
+
             </div>
 
         </div>
 
-
         <div id="users-table-container"></div>
+
+        <div id="availability-list-container"></div>
+
 
 
     </div>
@@ -78,6 +90,12 @@ async function showUserManagement() {
     Send Availability Reminder
     </h5>
 
+    <button
+        id="closeReminderModal"
+        type="button"
+        class="btn-close">
+    </button>
+
     </div>
     <div class="modal-body">
     <label>
@@ -89,10 +107,6 @@ async function showUserManagement() {
     </div>
 
     <div class="modal-footer">
-
-<button id="closeReminderModal" class="btn btn-secondary">
-Cancel
-</button>
 
 <button id="confirmSendReminder" class="btn btn-primary">
 Send
@@ -112,15 +126,101 @@ Send
 
     document.getElementById("sendReminderButton").addEventListener("click", function() {
     
-        document.getElementById("reminderModal").style.display = "block";
+    document.getElementById("reminderModal").style.display = "block";
+});
+
+    document.getElementById("closeReminderModal").addEventListener("click", function () {
+
+    document.getElementById("reminderModal").style.display = "none";
 
 });
 
-    document.getElementById("confirmSendReminder").addEventListener("click", sendReminderEmail);
+    document.getElementById("confirmSendReminder").addEventListener("click", sendReminderEmail)
+    document.getElementById("viewAvailabilityButton").addEventListener("click", showAvailabilityList);
 
     console.log("User management rendered");
 
     loadUsers();
+
+}
+
+async function showAvailabilityList() {
+    console.log("Loading admin availability");
+
+    const { data, error } = await supabaseClient
+        .from("availability")
+        .select(`
+            date,
+            users(name),
+            status,
+            notes
+            
+        `)
+        .order("date", { ascending: true });
+
+        if (error) {
+        console.log(error);
+        return;
+    }
+
+
+    const container = document.getElementById(
+        "availability-list-container"
+    );
+
+    container.innerHTML = `
+
+        <div class="admin-card">
+
+            <h3>Availability</h3>
+
+            <table class="table table-striped availability-table">
+
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Volunteer</th>
+                        <th>Status</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+
+
+                <tbody>
+
+                    ${data.map(function(entry) {
+
+                        return `
+                            <tr>
+                                <td>${entry.date}</td>
+                                <td>${entry.users.name}</td>
+                                <td>${entry.status}</td>
+                                <td>${entry.notes || ""}</td>
+                            </tr>
+                        `;
+
+                    }).join("")}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    `;
+console.log(data);
+}
+
+
+
+//Return to calendar
+
+function openCalendarPage() {
+
+    document.getElementById("admin-page").style.display = "none";
+    document.getElementById("calendar-page").style.display = "block";
+
+    showCalendar();
 
 }
 

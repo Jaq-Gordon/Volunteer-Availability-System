@@ -37,10 +37,18 @@ async function showCalendar() {
 
     console.log("Availability data:", data);
 
-    const events = data.map(function(entry) {
+    let events = [];
+    
+    if (window.currentUser.role === "volunteer") {
+
+    events = data.map(function(entry) {
         return {
-            title: `${entry.users.name} - ${entry.status}`,
+            title: "",
             start: entry.date,
+
+            className: entry.status === "Available"
+                ? "available-event"
+                : "unavailable-event",
 
             extendedProps: {
                 status: entry.status,
@@ -48,12 +56,86 @@ async function showCalendar() {
             }
         };
     });
+
+    }
+    else if (window.currentUser.role === "admin") {
+
+        let dailyCounts = {};
+
+        data.forEach(function(entry) {
+            if (!dailyCounts[entry.date]) {
+                dailyCounts[entry.date] = {
+                    available: 0,
+                    unavailable: 0
+                };
+            }
+             if (entry.status === "Available") {
+
+            dailyCounts[entry.date].available++;
+
+            } else {
+
+            dailyCounts[entry.date].unavailable++;
+
+            }
+        });
+
+        events = Object.keys(dailyCounts).map(function(date) {
+
+        let summary = "";
+
+        if (dailyCounts[date].available > 0) {
+
+            summary += `Available: ${dailyCounts[date].available} `;
+        }
+
+        if (dailyCounts[date].unavailable > 0) {
+
+            summary += `Not Available: ${dailyCounts[date].unavailable}`;
+        }
+
+        return {
+            title: "",
+            start: date,
+            classNames: ["admin-summary-event"],
+
+            extendedProps: {
+                available: dailyCounts[date].available,
+                unavailable: dailyCounts[date].unavailable
+        }
+
+    };
+
+    });
+}
+
+
     console.log("Calendar events:", events);
 
     calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: "dayGridMonth",
+        eventDisplay: "dot",
         events: events,
 
+        eventContent: function(info) {
+            if (window.currentUser.role === "admin") {
+                const available = info.event.extendedProps.available || 0;
+                const unavailable = info.event.extendedProps.unavailable || 0;
+
+                return {
+                    html: 
+                    ` <div class="admin-summary">
+                    <span class="available-event"></span>
+                    ${available}
+
+                    <span class="unavailable-event"></span>
+                    ${unavailable}
+                </div>`
+
+                };
+            }
+        },
+    
     
 
         //pass an object to the function containing information about the date clicked
@@ -70,6 +152,8 @@ async function showCalendar() {
 }
 
 async function refreshCalendar() {
+
+    console.log("refreshCalendar started");
 
     let query = supabaseClient
         .from("availability")
@@ -91,13 +175,80 @@ async function refreshCalendar() {
         return;
     }
 
-    const events = data.map(function(entry) {
-        return {
-            title: `${entry.users.name} - ${entry.status}`, //future redesign for calendar view
-            start: entry.date
-        };
-    });
+    let events = [];
 
+
+    if (window.currentUser.role === "volunteer") {
+
+        events = data.map(function(entry) {
+
+            return {
+                title: "",
+                start: entry.date,
+
+                className: entry.status === "Available"
+                    ? "available-event"
+                    : "unavailable-event"
+            };
+
+        });
+
+    }
+
+
+    else if (window.currentUser.role === "admin") {
+
+        let dailyCounts = {};
+
+        data.forEach(function(entry) {
+
+            if (!dailyCounts[entry.date]) {
+
+                dailyCounts[entry.date] = {
+                    available: 0,
+                    unavailable: 0
+                };
+
+            }
+
+
+            if (entry.status === "Available") {
+                dailyCounts[entry.date].available++;
+            } 
+            else {
+                dailyCounts[entry.date].unavailable++;
+            }
+
+        });
+
+
+        events = Object.keys(dailyCounts).map(function(date) {
+
+            let summary = "";
+
+            if (dailyCounts[date].available > 0) {
+                summary += `Available: ${dailyCounts[date].available} `;
+            }
+
+            if (dailyCounts[date].unavailable > 0) {
+                summary += `Not Available: ${dailyCounts[date].unavailable}`;
+            }
+
+
+            return {
+                title: "",
+                start: date,
+                classNames: ["admin-summary-event"],
+                
+
+                extendedProps: {
+                    available: dailyCounts[date].available,
+                    unavailable: dailyCounts[date].unavailable
+                }
+            };
+
+        });
+    }
     calendar.removeAllEvents();
     calendar.addEventSource(events);
 }
@@ -151,6 +302,8 @@ async function showAvailabilityForm(date) {
     );
 
     modal.show();
+
+    document.getElementById("modal-save").onclick = saveAvailability;
 
 }
 
@@ -216,3 +369,4 @@ if (error) {
     await refreshCalendar();
 
 }
+

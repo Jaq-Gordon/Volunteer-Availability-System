@@ -1,38 +1,73 @@
 
+/*Global Styles*/
+
+body {
+
+    margin: 0;
+    background-color: #e9edf2;
+}
 
 /* Login Page */
 .login-page {
     min-height: 100vh;
-    background-color: #909580;
+    background: 
+    linear-gradient(
+    135deg,
+    #0F172A,
+    #364156,
+    #6B8EAE
+);
 }
 
+.login-card {
+    background-color: white;
+    border-radius: 16px;
+    padding: 40px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+.login-card h2 {
+    color: #364156;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.login-card p {
+    color: #6B7280;
+    margin-bottom: 25px;
+}
 
 .login-icon {
     font-size: clamp(3rem, 5vw, 5rem);
-    color: #4A6FA5;
+    color: #364156;
 }
 
 .login-button {
     background-color: #4A6FA5;
     color: white;
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    transition: 0.2s;
 }
 
-
-.login-button:hover {
-    background-color: #90a1c0;
-    color: white;
+.login-card .form-control {
+    border-radius: 8px;
+    padding: 10px 12px;
 }
-
 
 .form-control:focus {
     border-color: #4A6FA5;
     box-shadow: 0 0 0 .2rem rgba(74,111,165,.25);
 }
 
+
 /*Calendar Page*/
 
 #calendar-page {
-    background-color: #F5F1E8;
+    background-color: #e9edf2;
     min-height: 100vh;
     padding: 2rem;
 }
@@ -44,6 +79,13 @@
     padding: 25px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+#calendar-page h1 {
+    text-align: center;
+    color: #1E293B;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
 }
 
 #main-navbar {
@@ -86,7 +128,7 @@
 
     margin: 0 auto 1rem auto;
 
-    color: #60534E;
+    color: #1E293B;
 
     font-size: 1.2rem;
 
@@ -125,7 +167,7 @@ i
 .fc-theme-standard td,
 .fc-theme-standard th {
 
-    border-color: #60534E;
+    border-color: #1E293B;
 }
 
 /*Weeekdays*/
@@ -135,6 +177,7 @@ i
     font-weight: none;
     padding: .75rem 0;
 }
+
 
 /*Date Numbers*/
 .fc-daygrid-day-number {
@@ -159,7 +202,7 @@ i
 
     display: block;
 
-    color: #60534E;
+    color: #1E293B;
 
     font-weight: 600;
 
@@ -189,7 +232,7 @@ i
 
     gap: .5rem;
 
-    color: #364156;
+    color: #1E293B;
 
 }
 
@@ -207,15 +250,64 @@ i
 
 .available {
 
-    background-color: #909580;
+    background-color: #4F9D69;
 
 }
 
 .unavailable {
 
-    background-color: #7A3E48;
+    background-color: #aa1919;
 
 }
+
+.available-event {
+    background-color: #4F9D69;
+    border-color: #4F9D69;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+
+}
+
+.unavailable-event {
+    background-color: #aa1919;
+    border-color: #aa1919;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+
+}
+
+/*Ceneters events*/
+
+.fc-daygrid-day-events {
+    text-align: center;
+}
+
+.fc-daygrid-event-harness {
+    display: inline-block;
+}
+
+/*Don't Show*/
+.admin-summary-event {
+    background: transparent !important;
+    border: none !important;
+}
+
+.admin-summary {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    color: #1E293B;
+}
+
+.admin-summary .available-event,
+.admin-summary .unavailable-event {
+    display: inline-block;
+    margin: 0;
+}
+
 
 /*Admin Dashboard*/
 
@@ -227,6 +319,9 @@ i
 
     padding: 2rem;
 
+    min-height: 100vh;
+
+
 }
 
 .admin-dashboard h2 {
@@ -234,6 +329,9 @@ i
     text-align: center;
 
     margin-bottom: 2rem;
+
+    color: #1E293B;
+
 
 }
 
@@ -246,6 +344,7 @@ i
     padding: 2rem;
 
     box-shadow: 0 4px 12px rgba(0,0,0,.08);
+
 
 }
 
@@ -306,4 +405,26 @@ i
 
 #users-table-container tr:hover {
     background-color: #f8f8f5;
+}
+
+/*Availability table*/
+
+.availability-table thead {
+    background-color: #364156;
+    color: white;
+}
+
+.availability-card {
+    margin-top: 20px;
+}
+
+.availability-card h3 {
+    color: #364156;
+    margin-bottom: 15px;
+}
+
+.availability-table {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
 }

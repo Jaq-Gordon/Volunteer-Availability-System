@@ -14,14 +14,9 @@ function showLogin () {
         <div class="row g-0 justify-content-center align-items-center">
 
             <!-- Login Card -->
-            <div class="col-lg-10">
+            <div class="col-lg-10 d-flex justify-content-center">
 
-                <div class="card shadow rounded-4 overflow-hidden">
-
-                    <div class="row g-0">
-
-                        <!-- Left Side -->
-                        <div class="col-lg-6">
+                <div class="card login-card shadow rounded-4 overflow-hidden">
 
                             <div class="card-body p-md-5">
 
@@ -91,18 +86,6 @@ function showLogin () {
                             </div>
 
                         </div>
-
-
-                        <!-- Image Side -->
-                        <div class="col-lg-6">
-
-                            <img 
-                                src="images/workers.jpg"
-                                class="w-100 h-100 object-fit-cover"
-                                alt="Workers">
-
-                        </div>
-
 
                     </div>
 
