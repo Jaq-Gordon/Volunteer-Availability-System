@@ -375,8 +375,14 @@ async function addUser() {
     }
     alert("User added successfully");
 
-    document.getElementById("addUserModal").remove();
+    const modalElement = document.getElementById("addUserModal");
 
+    const modal = bootstrap.Modal.getInstance(modalElement);
+
+    if (modal) {
+        modal.hide
+    }
+    
     loadUsers();
 
 }

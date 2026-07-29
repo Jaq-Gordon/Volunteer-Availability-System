@@ -10,13 +10,7 @@ body {
 /* Login Page */
 .login-page {
     min-height: 100vh;
-    background: 
-    linear-gradient(
-    135deg,
-    #0F172A,
-    #364156,
-    #6B8EAE
-);
+    background-color: #1E293B;
 }
 
 .login-card {
