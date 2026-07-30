@@ -56,3 +56,29 @@ async function sendReminderEmail() {
         alert("unable to send reiminder emails.")
     }
 }
+
+async function sendWelcomeEmail(name, username, email, password) {
+
+    try {
+        await emailjs.send(
+            "service_54k9yph",
+            "template_ypxnqfe",
+        
+            {
+                name: name,
+                username: username,
+                email: email,
+                password: password,
+            }
+        );
+        console.log("Welcome email sent");
+        return true;
+       
+    }
+         catch (error) {
+            console.error("Welcome email failed:", error);
+
+            return false;
+         }
+    
+}

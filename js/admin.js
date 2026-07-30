@@ -388,7 +388,20 @@ async function addUser() {
         return;
 
     }
-    alert("User added successfully");
+
+     const emailSent = await sendWelcomeEmail(
+        name,
+        username,
+        email,
+        password
+    );
+
+    if (!emailSent) {
+        alert("User created, but welcome email failed.");
+
+    } else {
+        alert("User added successfully");
+    }
 
     const modalElement = document.getElementById("addUserModal");
 
