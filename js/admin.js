@@ -135,7 +135,15 @@ Send
 
 });
 
-    document.getElementById("confirmSendReminder").addEventListener("click", sendReminderEmail)
+    document.getElementById("reminderModal").addEventListener("click", function(event) {
+    const modal = document.getElementById("reminderModal");
+
+    if (event.target === this) {
+        modal.style.display = "none";
+        }
+    });
+
+    document.getElementById("confirmSendReminder").addEventListener("click", sendReminderEmail);
     document.getElementById("viewAvailabilityButton").addEventListener("click", showAvailabilityList);
 
     console.log("User management rendered");

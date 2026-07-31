@@ -47,13 +47,14 @@ async function sendReminderEmail() {
         );
 
     }
-
+        document.getElementById("reminderModal").style.display = "none";
         alert("Reminder emails sent!");
     } 
 
     catch(err) {
         console.error(err);
-        alert("unable to send reiminder emails.")
+
+        alert("Unable to send emails.");    
     }
 }
 

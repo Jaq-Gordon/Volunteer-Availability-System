@@ -368,6 +368,13 @@ if (error) {
     
     await refreshCalendar();
 
+    const modalElement = document.getElementById("availabilityModal");
+    const modal = bootstrap.Modal.getInstance(modalElement);
+
+    if (modal) {
+        modal.hide();
+    }
+
 }
 //This is most likely to change after demo/password autofill for user
 
